@@ -1,0 +1,104 @@
+- title t('.title')
+
+.page-header
+  %h1= t '.headings.title'
+
+%p.lead= t '.description'
+
+%section
+  .row-fluid
+    .span6
+      %h4= t '.headings.code'
+      %pre.prettyprint
+        :plain
+          // #{t '.comment'}
+          $('#bank-input').select2(
+              ajax: {
+                  url: '/api/v1/banks?callback=?'
+                , dataType: 'jsonp'
+                , data: function(term, page) {
+                    return { q: term };
+                  }
+                , results: function(banks, page) {
+                    return { results: banks };
+                  }
+              }
+          );
+    .span6
+      %h4= t '.headings.form'
+      %form.form-horizontal
+        %fieldset.control-group
+          %label.control-label= t '.form.bank.label'
+          .controls
+            %input#input-bank
+        %fieldset.control-group
+          %label.control-label= t '.form.branch.label'
+          .controls
+            %input#input-branch
+
+- content_for :javascript do
+  :javascript
+    prettyPrint();
+
+    var defaultOptions = {
+        formatSearching: function() {
+          return '#{t ".form.searching"}';
+        }
+      , formatInputTooShort: function(term, minLength) {
+          return '#{t ".form.too_short"}';
+        }
+      , formatNoMatches: function() {
+          return '#{t ".form.no_matches"}';
+        }
+      , id: function(bank_or_branch) {
+          return bank_or_branch.code;
+        }
+      , formatResult: function(bank_or_branch) {
+          return bank_or_branch.kanji_name;
+        }
+      , formatSelection: function(bank_or_branch) {
+          return bank_or_branch.kanji_name;
+        }
+      , minimumInputLength: 1
+    };
+
+    var $bank = $('#input-bank')
+      , $branch = $('#input-branch');
+
+    $branch.select2($.extend(defaultOptions, {
+        data: []
+      , placeholder: '#{t ".form.branch.placeholder"}'
+    })).select2('enable', false);
+
+    $bank.select2($.extend(defaultOptions, {
+        placeholder: '#{t ".form.bank.placeholder"}'
+      , ajax: {
+            url: '/api/v1/banks?callback=?'
+          , dataType: 'jsonp'
+          , data: function(term, page) {
+              return { q: term };
+            }
+          , results: function(banks, page) {
+              return { results: banks };
+            }
+        }
+    }));
+
+    $bank.on('change', function(event) {
+      var bank = event.added;
+      if (bank) {
+        $branch.select2($.extend(defaultOptions, {
+            placeholder: '#{t ".form.branch.placeholder"}'
+          , ajax: {
+                url: '/api/v1/banks/' + bank.code + '/branches?callback=?'
+              , dataType: 'jsonp'
+              , data: function(term, page) {
+                  return { q: term };
+                }
+              , results: function(branches, page) {
+                  return { results: branches };
+                }
+            }
+        })).select2('enable', true);
+      }
+    });

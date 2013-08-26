@@ -1,0 +1,26 @@
+- title "#{@bank.kanji_name}#{t '.title'}"
+
+= content_for :navbar do
+  %form.navbar-search.pull-left(method='get' action='#{bank_branches_path(@bank)}')
+    %input.search-query.span2(type='text' name='q' value='#{params[:q]}' placeholder='#{t '.nav.search'}')
+
+%table.table.table-bordered.table-hover
+  %thead
+    %tr
+      %th= t '.thead.code'
+      %th= t '.thead.kanji_name'
+      %th= t '.thead.hiragana_name'
+      %th
+  %tbody
+    - @branches.each do |branch|
+      %tr
+        %td= branch.code
+        %td= branch.kanji_name
+        %td= branch.hiragana_name
+        %td
+          .btn-group
+            %a.btn(href='#{bank_branch_path(@bank, branch)}')= t '.a.show'
+            %a.btn(href='#{edit_bank_branch_path(@bank, branch)}')= t '.a.edit'
+            %a.btn(href='#{bank_branch_path(@bank, branch)}' data-method='delete' data-confirm='#{t '.confirmations.destroy'}')= t '.a.destroy'
+
+= paginate @branches

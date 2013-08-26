@@ -1,0 +1,22 @@
+- title @bank.kanji_name
+
+%dl.dl-horizontal
+  %dt= t '.dt.code'
+  %dd= @bank.code
+
+  %dt= t '.dt.kanji_name'
+  %dd= @bank.kanji_name
+
+  %dt= t '.dt.hiragana_name'
+  %dd= @bank.hiragana_name
+
+  %dt= t '.dt.branches_count'
+  %dd= number_with_delimiter @bank.branches.count
+
+  %dt= t '.dt.created_at'
+  %dd= l @bank.created_at
+
+  %dt= t '.dt.updated_at'
+  %dd= l @bank.updated_at
+
+%a.btn(href='#{edit_bank_path(@bank)}')= t '.a.edit'

@@ -1,0 +1,43 @@
+!!! 5
+%html(lang='#{I18n.default_locale}')
+  %head
+    %meta(charset='utf-8')
+    %meta(http-equiv='X-UA-Compatible' content='IE=Edge,chrome=1')
+    %meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    %title= [content_for(:title), t('.title')].reject(&:blank?).join(' | ')
+    = csrf_meta_tags
+    /[if lt IE 9]
+      = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js'
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'application'
+    = favicon_link_tag '/favicon.ico'
+
+  %body
+    #wrap
+      .navbar.navbar-fixed-top
+        .navbar-inner
+          .container-fluid
+            %a.btn.btn-navbar(data-target='.nav-collapse' data-toggle='collapse')
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+              %a.brand(href='#{root_path}')= t('.nav.title')
+            .container.nav-collapse
+              %ul.nav
+                %li= link_to t('.nav.api'), docs_path
+
+      .container-fluid
+        = yield
+        #push
+
+    #footer
+      .container-fluid
+        %p &copy; Lambda Engineering, Inc. #{Date.current.year}
+        %ul.inline
+          %li
+            %a(href='https://github.com/lambda-engineering' target='_blank') GitHub
+          %li
+            %a(href='http://lambda-engineering.github.io' target='_blank') Blog
+
+    - if content_for?(:javascript)
+      = yield(:javascript)

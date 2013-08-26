@@ -1,0 +1,129 @@
+- title t('.title')
+
+.tabbable.tabs-left
+  %ul.nav.nav-tabs
+    %li.active
+      %a(data-toggle='tab' href='#banks-index')= t '.nav.banks-index'
+    %li
+      %a(data-toggle='tab' href='#banks-show')= t '.nav.banks-show'
+    %li
+      %a(data-toggle='tab' href='#branches-index')= t '.nav.branches-index'
+    %li
+      %a(data-toggle='tab' href='#branches-show')= t '.nav.branches-show'
+
+  .tab-content
+    .tab-pane.fade#banks-index.active.in
+      %h3= t '.headings.uri'
+      %pre.prettyprint
+        http://jp-banks.herokuapp.com/api/v1/banks
+
+      %h3= t '.headings.params'
+      %pre.prettyprint
+        :plain
+          { q: &lt;query&gt; // optional }
+
+      %h3= t '.headings.example'
+      %pre.prettyprint
+        :plain
+          % curl http://jp-banks.herokuapp.com/api/v1/banks
+          [
+            {
+              code: "0001",
+              kanji_name: "みずほ銀行",
+              hiragana_name: "みずほ"
+            },
+            {
+              code: "0005",
+              kanji_name: "三菱東京ＵＦＪ銀行",
+              hiragana_name: "みつびしとうきようＵＦＪ"
+            },
+            ...
+          ]
+
+    .tab-pane.fade#banks-show
+      %h3= t '.headings.uri'
+      %pre.prettyprint
+        http://jp-banks.herokuapp.com/api/v1/banks/$bank_code
+
+      %h3= t '.headings.params'
+      %pre.prettyprint
+        {}
+
+      %h3= t '.headings.example'
+      %pre.prettyprint
+        :plain
+          % curl http://jp-banks.herokuapp.com/api/v1/banks/0001
+          {
+            code: "0001",
+            kanji_name: "みずほ銀行",
+            hiragana_name: "みずほ"
+            branches: [
+              {
+                code: "001",
+                kanji_name: "本店",
+                hiragana_name: "ほんてん"
+              },
+              {
+                code: "002",
+                kanji_name: "丸の内支店",
+                hiragana_name: "まるのうち"
+              },
+              ...
+            ]
+          }
+
+    .tab-pane.fade#branches-index
+      %h3= t '.headings.uri'
+      %pre.prettyprint
+        http://jp-banks.herokuapp.com/api/v1/banks/$bank_code/branches
+
+      %h3= t '.headings.params'
+      %pre.prettyprint
+        :plain
+          { q: &lt;query&gt; // optional }
+
+      %h3= t '.headings.example'
+      %pre.prettyprint
+        :plain
+          % curl http://jp-banks.herokuapp.com/api/v1/banks/0001/branches
+          [
+            {
+              code: "001",
+              kanji_name: "本店",
+              hiragana_name: "ほんてん"
+            },
+            {
+              code: "002",
+              kanji_name: "丸の内支店",
+              hiragana_name: "まるのうち"
+            },
+            ...
+          ]
+
+    .tab-pane.fade#branches-show
+      %h3= t '.headings.uri'
+      %pre.prettyprint
+        http://jp-banks.herokuapp.com/api/v1/banks/$bank_code/branches/$branch_code
+
+      %h3= t '.headings.params'
+      %pre.prettyprint
+        {}
+
+      %h3= t '.headings.example'
+      %pre.prettyprint
+        :plain
+          % curl http://jp-banks.herokuapp.com/api/v1/banks/0001/branches/001
+          {
+            code: "001",
+            kanji_name: "本店",
+            hiragana_name: "ほんてん",
+            bank: {
+              code: "0001",
+              kanji_name: "みずほ銀行",
+              hiragana_name: "みずほ"
+            }
+          }
+
+- content_for :javascript do
+  :javascript
+    prettyPrint();

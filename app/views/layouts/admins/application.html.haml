@@ -1,0 +1,45 @@
+!!! 5
+%html(lang='#{I18n.default_locale}')
+  %head
+    %meta(charset='utf-8')
+    %meta(http-equiv='X-UA-Compatible' content='IE=Edge,chrome=1')
+    %meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    %title= [content_for(:title), t('.title')].reject(&:blank?).join(' | ')
+    = csrf_meta_tags
+    /[if lt IE 9]
+      = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js'
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'application'
+    = favicon_link_tag '/favicon.ico'
+
+  %body
+    #wrap
+      .navbar.navbar-fixed-top
+        .navbar-inner
+          .container-fluid
+            %a.btn.btn-navbar(data-target='.nav-collapse' data-toggle='collapse')
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+              %a.brand(href='#')= content_for(:title)
+            .container-fluid.nav-collapse
+              - if content_for?(:navbar)
+                = yield(:navbar)
+              %ul.nav.pull-right
+                %li= link_to t('.nav.top'), root_path
+
+      .container-fluid
+        = yield
+        #push
+
+    #footer
+      .container-fluid
+        %p &copy; Lambda Engineering, Inc. #{Date.current.year}
+        %ul.inline
+          %li
+            %a(href='#{JpBanks::Application.routes.url_helpers.docs_path}')= t '.footer.docs'
+          %li
+            %a(href='#{sidekiq_web_path}')= t '.footer.sidekiq'
+
+    - if content_for?(:javascript)
+      = yield(:javascript)

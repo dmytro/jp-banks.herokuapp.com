@@ -1,0 +1,19 @@
+- title "#{@bank.kanji_name}#{@branch.kanji_name}"
+
+%dl.dl-horizontal
+  %dt= t '.dt.code'
+  %dd= @branch.code
+
+  %dt= t '.dt.kanji_name'
+  %dd= @branch.kanji_name
+
+  %dt= t '.dt.hiragana_name'
+  %dd= @branch.hiragana_name
+
+  %dt= t '.dt.created_at'
+  %dd= l @branch.created_at
+
+  %dt= t '.dt.updated_at'
+  %dd= l @branch.updated_at
+
+%a.btn(href='#{edit_bank_branch_path(@bank, @branch)}')= t '.a.edit'

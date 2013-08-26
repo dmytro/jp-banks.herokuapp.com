@@ -1,0 +1,129 @@
+ja:
+  time:
+    formats:
+      default: ! '%Y/%m/%d %H:%M'
+  activemodel:
+    attributes:
+      bank: &bank_attributes
+        code: コード
+        kanji_name: 漢字
+        hiragana_name: ひらがな
+        branches_count: 支店数
+        created_at: 作成日
+        updated_at: 更新日
+      branch: &branch_attributes
+        code: コード
+        kanji_name: 漢字
+        hiragana_name: ひらがな
+        created_at: 作成日
+        updated_at: 更新日
+  pagination:
+    prev: 前
+    next: 次
+  exceptions:
+    page_not_found:
+      title: 404
+      description: お探しのページはありません。
+    internal_server_error:
+      title: 500
+      description: サーバーでエラーが発生しました。
+  docs:
+    pages:
+      welcome:
+        title: ようこそ
+        description: 本APIを使う事で銀行とその支店を補完しユーザーの入力を減らす事が出来ます。
+        headings:
+          title: 銀行・支店検索
+          code: コード
+          form: フォーム
+        form:
+          bank:
+            label: 銀行
+            placeholder: 銀行名を入力して下さい
+          branch:
+            label: 支店
+            placeholder: 支店名を入力して下さい
+          searching: 検索中・・・
+          no_matches: 見つかりませんでした
+          too_short: 入力で補完されます
+        comment: 簡略化してあります。完全なコードはHTML参照して下さい。
+      docs:
+        title: APIドキュメント
+        nav:
+          banks-index: 銀行一覧
+          banks-show: 銀行詳細
+          branches-index: 支店一覧
+          branches-show: 支店詳細
+        headings:
+          uri: URI
+          params: パラメーター
+          example: 例
+  admins:
+    buttons: &buttons
+      show: 詳細
+      edit: 編集
+      save: 保存
+      destroy: 削除
+      branches: 支店
+    confirmations: &confirmations
+      destroy: 本当に削除しますか？
+    banks:
+      index:
+        title: 銀行一覧
+        thead:
+          <<: *bank_attributes
+        confirmations:
+          <<: *confirmations
+        a:
+          <<: *buttons
+        nav:
+          search: 銀行検索
+      show:
+        dt:
+          <<: *bank_attributes
+        a:
+          <<: *buttons
+      edit:
+        form:
+          label:
+            <<: *bank_attributes
+          button:
+            <<: *buttons
+    branches:
+      index:
+        title: 支店一覧
+        thead:
+          <<: *branch_attributes
+        confirmations:
+          <<: *confirmations
+        a:
+          <<: *buttons
+        nav:
+          search: 支店検索
+      show:
+        dt:
+          <<: *branch_attributes
+        a:
+          <<: *buttons
+      edit:
+        form:
+          label:
+            <<: *branch_attributes
+          button:
+            <<: *buttons
+  layouts:
+    docs:
+      application:
+        title: 銀行・支店検索
+        nav:
+          title: 銀行・支店検索
+          about: このサイトについて
+          api: APIドキュメント
+    admins:
+      application:
+        title: 銀行・支店検索管理画面
+        nav:
+          top: トップ
+        footer:
+          docs: Docs
+          sidekiq: Sidekiq
