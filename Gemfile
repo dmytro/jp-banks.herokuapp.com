@@ -36,7 +36,7 @@ gem 'less-rails'
 gem 'google-code-prettify-rails'
 
 # Web server
-gem 'thin'
+gem 'puma'
 
 # Queue
 gem 'sidekiq'
