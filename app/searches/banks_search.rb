@@ -1,12 +1,20 @@
 class BanksSearch
   def initialize(banks, query)
-    @banks = banks.any_of(
-      { kanji_name: %r(#{query})i },
-      { hiragana_name: %r(#{query})i },
-    )
+    @filtered = query.present? ? filter(banks, query) : banks
   end
 
   def method_missing(name, *args, &block)
-    @banks.send(name, *args, &block)
+    filtered.send(name, *args, &block)
+  end
+
+  private
+
+  attr_accessor :filtered
+
+  def filter(banks, query)
+    banks.any_of(
+      { kanji_name: %r(#{query})i },
+      { hiragana_name: %r(#{query})i },
+    )
   end
 end

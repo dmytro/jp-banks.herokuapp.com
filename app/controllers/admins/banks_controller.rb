@@ -1,7 +1,8 @@
 module Admins
   class BanksController < ApplicationController
     def index
-      @banks = Bank.order_by(:code.asc).page(params[:page])
+      @banks = BanksSearch.new(Bank.scoped, params[:q]).
+        order_by(:code.asc).page(params[:page])
     end
 
     def show

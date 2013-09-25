@@ -3,7 +3,8 @@ module Admins
     before_action :set_bank
 
     def index
-      @branches = BranchesSearch.new(@bank.branches, params[:q]).order_by(:code.asc).page(params[:page])
+      @branches = BranchesSearch.new(@bank.branches, params[:q]).
+        order_by(:code.asc).page(params[:page])
     end
 
     def show

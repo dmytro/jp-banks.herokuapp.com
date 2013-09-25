@@ -14,6 +14,7 @@ gem 'jbuilder'
 # Middlewares
 gem 'rack-contrib'
 gem 'rack-google-analytics'
+gem 'rack-cache'
 
 # Assets
 gem 'sass-rails'
@@ -35,7 +36,7 @@ gem 'less-rails'
 gem 'google-code-prettify-rails'
 
 # Web server
-gem 'thin'
+gem 'puma'
 
 # Queue
 gem 'sidekiq'
@@ -64,6 +65,7 @@ gem 'api', path: 'engines/api'
 gem 'admins', path: 'engines/admins'
 
 group :development, :test do
+  gem 'spring'
   gem 'pry-rails'
 end
 
