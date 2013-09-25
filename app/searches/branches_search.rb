@@ -1,12 +1,20 @@
 class BranchesSearch
   def initialize(branches, query)
-    @branches = branches.any_of(
-      { kanji_name: %r(#{query})i },
-      { hiragana_name: %r(#{query})i },
-    )
+    @filtered = query.present? ? filter(branches, query) : branches
   end
 
   def method_missing(name, *args, &block)
-    @branches.send(name, *args, &block)
+    filtered.send(name, *args, &block)
+  end
+
+  private
+
+  attr_accessor :filtered
+
+  def filter(branches, query)
+    branches.any_of(
+      { kanji_name: %r(#{query})i },
+      { hiragana_name: %r(#{query})i },
+    )
   end
 end
