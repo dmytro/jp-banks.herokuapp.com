@@ -65,6 +65,7 @@ gem 'api', path: 'engines/api'
 gem 'admins', path: 'engines/admins'
 
 group :development, :test do
+  gem 'spring'
   gem 'pry-rails'
 end
 
