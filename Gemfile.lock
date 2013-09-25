@@ -128,6 +128,8 @@ GEM
     pry-rails (0.3.2)
       pry (>= 0.9.10)
     rack (1.5.2)
+    rack-cache (1.2)
+      rack (>= 0.4)
     rack-contrib (1.1.0)
       rack (>= 0.9.1)
     rack-google-analytics (0.11.0)
@@ -236,6 +238,7 @@ DEPENDENCIES
   mongoid!
   newrelic_rpm
   pry-rails
+  rack-cache
   rack-contrib
   rack-google-analytics
   rails

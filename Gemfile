@@ -14,6 +14,7 @@ gem 'jbuilder'
 # Middlewares
 gem 'rack-contrib'
 gem 'rack-google-analytics'
+gem 'rack-cache'
 
 # Assets
 gem 'sass-rails'
