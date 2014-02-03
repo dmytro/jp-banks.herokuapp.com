@@ -11,13 +11,26 @@ module Admins
       @branch = @bank.branches.find(params[:id])
     end
 
+    def new
+      @branch = @bank.branches.new
+    end
+
     def edit
       @branch = @bank.branches.find(params[:id])
     end
 
+    def create
+      @branch = @bank.branches.new(branch_params)
+      if @branch.save
+        redirect_to [@bank, @branch]
+      else
+        render :new
+      end
+    end
+
     def update
       @branch = @bank.branches.find(params[:id])
-      if @branch.update_attributes(params.require(:branch).permit!)
+      if @branch.update_attributes(branch_params)
         redirect_to [@bank, @branch]
       else
         render :edit
@@ -34,6 +47,10 @@ module Admins
 
     def set_bank
       @bank = Bank.find(params[:bank_id])
+    end
+
+    def branch_params
+      params.require(:branch).permit!
     end
   end
 end

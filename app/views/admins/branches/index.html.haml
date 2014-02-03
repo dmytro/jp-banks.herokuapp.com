@@ -4,6 +4,9 @@
   %form.navbar-search.pull-left(method='get' action='#{bank_branches_path(@bank)}')
     %input.search-query.span2(type='text' name='q' value='#{params[:q]}' placeholder='#{t '.nav.search'}')
 
+  .pull-right
+    %a.btn.btn-primary(href='#{new_bank_branch_path(@bank)}')= t '.a.new'
+
 %table.table.table-bordered.table-hover
   %thead
     %tr

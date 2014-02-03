@@ -61,6 +61,7 @@ ja:
   admins:
     buttons: &buttons
       show: 詳細
+      new: 新規
       edit: 編集
       save: 保存
       destroy: 削除
@@ -105,12 +106,11 @@ ja:
           <<: *branch_attributes
         a:
           <<: *buttons
-      edit:
-        form:
-          label:
-            <<: *branch_attributes
-          button:
-            <<: *buttons
+      form:
+        label:
+          <<: *branch_attributes
+        button:
+          <<: *buttons
   layouts:
     docs:
       application:

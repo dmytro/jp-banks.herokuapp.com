@@ -1,0 +1,13 @@
+= form_for [bank, branch], html: { class: 'form-horizontal' } do |f|
+  %fieldset.control-group
+    %label.control-label= t '.label.code'
+    .controls= f.text_field :code
+  %fieldset.control-group
+    %label.control-label= t '.label.kanji_name'
+    .controls= f.text_field :kanji_name
+  %fieldset.control-group
+    %label.control-label= t '.label.hiragana_name'
+    .controls= f.text_field :hiragana_name
+  %fieldset.control-group
+    .controls
+      %button.btn= t '.button.save'
