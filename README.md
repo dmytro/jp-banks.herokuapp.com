@@ -1,3 +1,7 @@
+## Status
+
+[![Dependency Status](https://gemnasium.com/shouichi/jp-banks.herokuapp.com.png)](https://gemnasium.com/shouichi/jp-banks.herokuapp.com)
+
 ## Heroku Addons
 
     % heroku addons:add rediscloud:20
