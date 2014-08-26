@@ -3,7 +3,7 @@ require File.expand_path('../boot', __FILE__)
 # Pick the frameworks you want:
 # require 'active_record/railtie'
 require 'action_controller/railtie'
-require 'action_mailer/railtie'
+# require 'action_mailer/railtie'
 require 'sprockets/railtie'
 # require 'rails/test_unit/railtie'
 
@@ -28,6 +28,5 @@ module JpBanks
     config.exceptions_app = self.routes
 
     config.middleware.use Rack::JSONP
-    config.middleware.use Rack::GoogleAnalytics, tracker: 'UA-42748439-1'
   end
 end

@@ -16,5 +16,4 @@
 //= require turbolinks
 //= require select2
 //= require google-code-prettify-rails/prettify
-//= require google-analytics-turbolinks
 //= require_tree .
