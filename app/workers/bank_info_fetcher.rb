@@ -51,4 +51,4 @@ class BankInfoFetcher
       @branches ||= @hash.branches.map { |b| OpenStruct.new(b) } rescue [OpenStruct.new]
     end
   end
-end
+end if Rails.env.development?
