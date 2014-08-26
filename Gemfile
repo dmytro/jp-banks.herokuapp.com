@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.5'
 
 # OR mapper
-gem 'mongoid', git: 'https://github.com/mongoid/mongoid.git'
+gem 'mongoid', '4.0.0'
 
 # Template engines
 gem 'haml-rails'
