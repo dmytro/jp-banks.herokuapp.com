@@ -2,7 +2,7 @@ ruby '2.1.2'
 
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', '4.0.5'
 
 # OR mapper
 gem 'mongoid', git: 'https://github.com/mongoid/mongoid.git'
