@@ -28,6 +28,5 @@ module JpBanks
     config.exceptions_app = self.routes
 
     config.middleware.use Rack::JSONP
-    config.middleware.use Rack::GoogleAnalytics, tracker: 'UA-42748439-1'
   end
 end
