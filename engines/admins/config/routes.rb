@@ -1,9 +1,5 @@
-require 'sidekiq/web'
-
 module Admins
   Engine.routes.draw do
-    mount Sidekiq::Web   => '/sidekiq'
-
     resources :banks do
       resources :branches
 

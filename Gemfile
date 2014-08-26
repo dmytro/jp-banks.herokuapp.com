@@ -36,10 +36,6 @@ gem 'google-code-prettify-rails'
 # Web server
 gem 'puma'
 
-# Queue
-gem 'sidekiq'
-gem 'sinatra', require: false
-
 # Cache
 gem 'dalli'
 gem 'memcachier'
@@ -47,20 +43,21 @@ gem 'memcachier'
 # Services
 gem 'newrelic_rpm'
 
-# Process management
-gem 'foreman'
-
 # Pagination
 gem 'kaminari'
-
-# Others
-gem 'httparty'
-gem 'moji'
 
 # Engines
 gem 'docs', path: 'engines/docs'
 gem 'api', path: 'engines/api'
 gem 'admins', path: 'engines/admins'
+
+group :development do
+  gem 'foreman', require: false
+  gem 'httparty'
+  gem 'moji'
+  gem 'sidekiq'
+  gem 'sinatra', require: false
+end
 
 group :development, :test do
   gem 'spring'
