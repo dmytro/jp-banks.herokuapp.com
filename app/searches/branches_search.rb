@@ -13,6 +13,7 @@ class BranchesSearch
 
   def filter(branches, query)
     branches.any_of(
+      { code: %r(#{query})i },
       { kanji_name: %r(#{query})i },
       { hiragana_name: %r(#{query})i },
     )
