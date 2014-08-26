@@ -13,7 +13,6 @@ gem 'jbuilder'
 
 # Middlewares
 gem 'rack-contrib'
-gem 'rack-google-analytics'
 gem 'rack-cache'
 
 # Assets
@@ -28,7 +27,6 @@ gem 'therubyracer'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'select2-rails'
-gem 'google-analytics-turbolinks'
 
 # Stylesheets
 gem 'twitter-bootstrap-rails'
