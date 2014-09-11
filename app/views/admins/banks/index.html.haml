@@ -1,10 +1,12 @@
 - title t('.title')
 
 = content_for :navbar do
-  %form.navbar-search.pull-left(method='get' action='#{banks_path}')
-    %input.search-query.span2(type='text' name='q' value='#{params[:q]}' placeholder='#{t '.nav.search'}')
+  %form.navbar-form.navbar-left(method='get' action='#{banks_path}')
+    .form-group
+      %input.form-control(type='text' name='q' value='#{params[:q]}'
+        placeholder='#{t '.nav.search'}')
 
-%table.table.table-bordered.table-hover
+%table.table.table-striped.table-hover
   %thead
     %tr
       %th= t '.thead.code'
@@ -19,9 +21,9 @@
         %td= bank.hiragana_name
         %td
           .btn-group
-            %a.btn(href='#{bank_path(bank)}')= t '.a.show'
-            %a.btn(href='#{edit_bank_path(bank)}')= t '.a.edit'
-            %a.btn(href='#{bank_branches_path(bank)}')= t '.a.branches'
-            %a.btn(href='#{bank_path(bank)}' data-method='delete' data-confirm='#{t '.confirmations.destroy'}')= t '.a.destroy'
+            %a.btn.btn-default(href='#{bank_path(bank)}')= t '.a.show'
+            %a.btn.btn-default(href='#{edit_bank_path(bank)}')= t '.a.edit'
+            %a.btn.btn-default(href='#{bank_branches_path(bank)}')= t '.a.branches'
+            %a.btn.btn-default(href='#{bank_path(bank)}' data-method='delete' data-confirm='#{t '.confirmations.destroy'}')= t '.a.destroy'
 
 = paginate @banks

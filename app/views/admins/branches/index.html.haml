@@ -1,11 +1,13 @@
 - title "#{@bank.kanji_name}#{t '.title'}"
 
 = content_for :navbar do
-  %form.navbar-search.pull-left(method='get' action='#{bank_branches_path(@bank)}')
-    %input.search-query.span2(type='text' name='q' value='#{params[:q]}' placeholder='#{t '.nav.search'}')
-
-  .pull-right
-    %a.btn.btn-primary(href='#{new_bank_branch_path(@bank)}')= t '.a.new'
+  %form.navbar-form.navbar-left(method='get' action='#{bank_branches_path(@bank)}')
+    .form-group
+      %input.form-control(type='text' name='q' value='#{params[:q]}'
+        placeholder='#{t '.nav.search'}')
+  %ul.nav.navbar-nav.navbar-right
+    %li
+      %a.btn.btn-default(href='#{new_bank_branch_path(@bank)}')= t '.a.new'
 
 %table.table.table-bordered.table-hover
   %thead
@@ -22,8 +24,8 @@
         %td= branch.hiragana_name
         %td
           .btn-group
-            %a.btn(href='#{bank_branch_path(@bank, branch)}')= t '.a.show'
-            %a.btn(href='#{edit_bank_branch_path(@bank, branch)}')= t '.a.edit'
-            %a.btn(href='#{bank_branch_path(@bank, branch)}' data-method='delete' data-confirm='#{t '.confirmations.destroy'}')= t '.a.destroy'
+            %a.btn.btn-default(href='#{bank_branch_path(@bank, branch)}')= t '.a.show'
+            %a.btn.btn-default(href='#{edit_bank_branch_path(@bank, branch)}')= t '.a.edit'
+            %a.btn.btn-default(href='#{bank_branch_path(@bank, branch)}' data-method='delete' data-confirm='#{t '.confirmations.destroy'}')= t '.a.destroy'
 
 = paginate @branches
