@@ -14,3 +14,5 @@
 /tmp
 
 /vendor/bundle
+
+.ruby-version
